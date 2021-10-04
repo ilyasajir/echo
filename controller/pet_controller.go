@@ -29,7 +29,7 @@ func CreatePetController(c echo.Context) error {
 	pet := model.Pet{}
 	c.Bind(&pet)
 
-	err := config.DB.Save(&pet).Error
+	err := config.DB.Create(&pet).Error
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"message": err.Error(),

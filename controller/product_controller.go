@@ -29,7 +29,7 @@ func CreateProductController(c echo.Context) error {
 	product := model.Product{}
 	c.Bind(&product)
 
-	err := config.DB.Save(&product).Error
+	err := config.DB.Create(&product).Error
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"message": err.Error(),
@@ -38,6 +38,6 @@ func CreateProductController(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, map[string]interface{}{
 		"messages": "success create product",
-		"user":     product,
+		"product":  product,
 	})
 }

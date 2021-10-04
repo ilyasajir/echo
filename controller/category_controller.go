@@ -29,7 +29,7 @@ func CreateCategoryController(c echo.Context) error {
 	category := model.Category{}
 	c.Bind(&category)
 
-	err := config.DB.Save(&category).Error
+	err := config.DB.Create(&category).Error
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"message": err.Error(),
@@ -38,6 +38,6 @@ func CreateCategoryController(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, map[string]interface{}{
 		"messages": "success adding category",
-		"pet":      category,
+		"category": category,
 	})
 }

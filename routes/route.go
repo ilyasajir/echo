@@ -13,6 +13,10 @@ func New() *echo.Echo {
 	e.POST("/users", controller.CreateUserController)
 	e.GET("/pets", controller.GetPetController)
 	e.POST("/pets", controller.CreatePetController)
+	e.GET("/products", controller.GetProductController)
+	e.POST("/products", controller.CreateProductController)
+	e.GET("/categories", controller.GetCategoryController)
+	e.POST("/categories", controller.CreateCategoryController)
 	return e
 
 }

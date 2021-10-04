@@ -9,10 +9,10 @@ import (
 	"github.com/labstack/echo"
 )
 
-func GetPetController(c echo.Context) error {
-	var pets []model.Pet
+func GetProductController(c echo.Context) error {
+	var products []model.Product
 
-	err := config.DB.Find(&pets).Error
+	err := config.DB.Find(&products).Error
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"message": err.Error(),
@@ -20,16 +20,16 @@ func GetPetController(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, map[string]interface{}{
 		"message": "success",
-		"data":    pets,
+		"data":    products,
 	})
 }
 
-func CreatePetController(c echo.Context) error {
+func CreateProductController(c echo.Context) error {
 	//binding data
-	pet := model.Pet{}
-	c.Bind(&pet)
+	product := model.Product{}
+	c.Bind(&product)
 
-	err := config.DB.Save(&pet).Error
+	err := config.DB.Save(&product).Error
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"message": err.Error(),
@@ -37,7 +37,7 @@ func CreatePetController(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"messages": "success adding pet",
-		"pet":      pet,
+		"messages": "success create product",
+		"user":     product,
 	})
 }

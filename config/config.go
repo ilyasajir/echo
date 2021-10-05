@@ -24,4 +24,5 @@ func InitMigrate() {
 	DB.AutoMigrate(&model.Pet{})
 	DB.AutoMigrate(&model.Product{})
 	DB.AutoMigrate(&model.Category{})
+	DB.AutoMigrate(&model.Article{})
 }

@@ -17,6 +17,8 @@ func New() *echo.Echo {
 	e.POST("/products", controller.CreateProductController)
 	e.GET("/categories", controller.GetCategoryController)
 	e.POST("/categories", controller.CreateCategoryController)
+	e.GET("/articles", controller.GetArticleController)
+	e.POST("/articles", controller.CreateArticleController)
 	return e
 
 }

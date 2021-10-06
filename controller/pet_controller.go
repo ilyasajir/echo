@@ -60,3 +60,20 @@ func DeletePetsController(c echo.Context) error {
 		"data":    pets,
 	})
 }
+
+func UpdatePetsController(c echo.Context) error {
+	var pets model.Pet
+	c.Bind(&pets)
+	id, _ := strconv.Atoi(c.Param("id"))
+	err := config.DB.Where("pet_id=?", id).Updates(&pets).Error
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]interface{}{
+			"message": err.Error(),
+		})
+	}
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"message": "success",
+		"data":    pets,
+	})
+}

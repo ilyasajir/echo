@@ -60,3 +60,20 @@ func DeleteProductController(c echo.Context) error {
 		"data":    products,
 	})
 }
+
+func UpdateProductController(c echo.Context) error {
+	var products model.Product
+	c.Bind(&products)
+	id, _ := strconv.Atoi(c.Param("id"))
+	err := config.DB.Where("product_id=?", id).Updates(&products).Error
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]interface{}{
+			"message": err.Error(),
+		})
+	}
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"message": "success",
+		"data":    products,
+	})
+}

@@ -60,3 +60,20 @@ func DeleteCategoryController(c echo.Context) error {
 		"data":    categories,
 	})
 }
+
+func UpdateCategoryController(c echo.Context) error {
+	var categories model.Category
+	c.Bind(&categories)
+	id, _ := strconv.Atoi(c.Param("id"))
+	err := config.DB.Where("category_id=?", id).Updates(&categories).Error
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]interface{}{
+			"message": err.Error(),
+		})
+	}
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"message": "success",
+		"data":    categories,
+	})
+}

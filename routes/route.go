@@ -21,15 +21,22 @@ func New() *echo.Echo {
 	e.PUT("/users/:id", controller.UpdateUserController)
 	e.POST("/users", controller.CreateUserController)
 	e.POST("/login", controller.LoginUserController)
+
 	e.GET("/pets", controller.GetPetController)
 	e.POST("/pets", controller.CreatePetController)
 	e.DELETE("/pets/:id", controller.DeletePetsController)
+	e.PUT("/pets/:id", controller.UpdatePetsController)
+
 	e.GET("/products", controller.GetProductController)
 	e.POST("/products", controller.CreateProductController)
 	e.DELETE("/products/:id", controller.DeleteProductController)
+	e.PUT("/products/:id", controller.UpdateProductController)
+
 	e.GET("/categories", controller.GetCategoryController)
 	e.POST("/categories", controller.CreateCategoryController)
 	e.DELETE("/categories/:id", controller.DeleteCategoryController)
+	e.PUT("/categories/:id", controller.UpdateCategoryController)
+
 	e.GET("/articles", controller.GetArticleController)
 	e.POST("/articles", controller.CreateArticleController)
 
